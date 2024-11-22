@@ -18,3 +18,4 @@ docker push {repositoryUri}
 
 docker pull {repositoryUri}
 docker run -d -p 8000:443 -p 8080:80 {repositoryUri}
+------------------------------------------------------------
