@@ -10,13 +10,18 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish -c Release -o out
 
-# Use a Windows base image to run the application
+# Use a .NET 8.0 runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /skillseek-frontend
 COPY --from=build /skillseek-frontend/out .
 
-# Copy the SSL folder from the host to the container
-COPY ./ssl /skillseek-frontend/ssl
+# Install OpenSSL to generate SSL certificates
+RUN apt-get update && apt-get install -y openssl
+
+# Create and generate SSL certificates dynamically
+RUN mkdir ssl && \
+    openssl req -x509 -newkey rsa:4096 -keyout ssl/skillseek.key -out ssl/skillseek.crt -days 365 -subj "/C=AU/ST=NSW/L=Strathfield/O=IT/CN=localhost" -passout pass:123456 && \
+    openssl pkcs12 -export -out ssl/skillseek.pfx -inkey ssl/skillseek.key -in ssl/skillseek.crt -passin pass:123456 -passout pass:123456
 
 # Start the application
 ENTRYPOINT ["dotnet", "skillseek.Frontend.dll"]
