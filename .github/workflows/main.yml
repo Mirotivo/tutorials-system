@@ -40,11 +40,6 @@ jobs:
         username: ${{ secrets.AZURE_SERVER_USERNAME }}
         password: ${{ secrets.AZURE_SERVER_PASSWORD }}
         script: |
-          # Pull updated images
           docker compose -f docker-compose.yml pull
-          
-          # Stop and remove existing containers
           docker compose -f docker-compose.yml down
-          
-          # Start updated containers
           docker compose -f docker-compose.yml up -d
