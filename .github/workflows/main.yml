@@ -39,5 +39,5 @@ jobs:
         username: ${{ secrets.AZURE_SERVER_USERNAME }}
         password: ${{ secrets.AZURE_SERVER_PASSWORD }}
         script: |
-          powershell -Command "${{ secrets.DOCKER_PASSWORD }} | docker login -username "${{ secrets.DOCKER_USERNAME }}" --password-stdin;"
+          powershell -Command "$dockerPassword = '${{ secrets.DOCKER_PASSWORD }}'; docker login --username '${{ secrets.DOCKER_USERNAME }}' --password-stdin <<< $dockerPassword"
           powershell -Command "cd C:\Server\tutorials-systems; Write-Host 'INFO: Navigated to C:\Server\tutorials-systems...'; docker compose -f docker-compose.yml pull; docker compose -f docker-compose.yml down; docker compose -f docker-compose.yml up -d;"
