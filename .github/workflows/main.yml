@@ -40,6 +40,7 @@ jobs:
         username: ${{ secrets.AZURE_SERVER_USERNAME }}
         password: ${{ secrets.AZURE_SERVER_PASSWORD }}
         script: |
+          docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
           docker compose -f docker-compose.yml pull
           docker compose -f docker-compose.yml down
           docker compose -f docker-compose.yml up -d
