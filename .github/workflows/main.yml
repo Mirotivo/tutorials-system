@@ -40,11 +40,6 @@ jobs:
         password: ${{ secrets.AZURE_SERVER_PASSWORD }}
         script: |
           powershell -Command "
-            # Start Docker service
-            Start-Service -Name docker;
-            Write-Host 'INFO: Docker service started';
-            
-            # Navigate to the project directory
             cd C:\Server\tutorials-systems;
             Write-Host 'INFO: Navigated to C:\Server\tutorials-systems';
             
