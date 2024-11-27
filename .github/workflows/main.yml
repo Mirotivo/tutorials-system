@@ -5,7 +5,6 @@ on:
     branches:
       - master
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Deploy to Azure Server via SSH
+    - name: Login via SSH
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.AZURE_SERVER_IP }}
