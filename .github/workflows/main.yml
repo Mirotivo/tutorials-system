@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.AZURE_SERVER_USERNAME }}
           password: ${{ secrets.AZURE_SERVER_PASSWORD }}
           script: |
-            powershell -Command "'${{ secrets.DOCKER_PASSWORD }}' | docker --debug login --username '${{ secrets.DOCKER_USERNAME }}' --password-stdin;"
+            powershell -Command "docker logout; '${{ secrets.DOCKER_PASSWORD }}' | docker --debug login --username '${{ secrets.DOCKER_USERNAME }}' --password-stdin;"
 
       - name: Login via SSH
         uses: appleboy/ssh-action@master
