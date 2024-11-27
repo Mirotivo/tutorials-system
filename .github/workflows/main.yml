@@ -38,7 +38,7 @@ jobs:
       with:
         host: ${{ secrets.AZURE_SERVER_IP }}
         username: ${{ secrets.AZURE_SERVER_USERNAME }}
-        key: ${{ secrets.AZURE_SERVER_PEM }}
+        password: ${{ secrets.AZURE_SERVER_PASSWORD }}
         script: |
           # Pull updated images
           docker compose -f docker-compose.yml pull
