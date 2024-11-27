@@ -40,6 +40,7 @@ jobs:
         password: ${{ secrets.AZURE_SERVER_PASSWORD }}
         script: |
           cd C:\Server\tutorials-systems
+          Write-Host "INFO: Navigated to C:\Server\tutorials-systems"
           docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
           docker compose -f docker-compose.yml pull
           docker compose -f docker-compose.yml down
