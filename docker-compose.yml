@@ -7,6 +7,7 @@ services:
     volumes:
       - ${PWD}/Database:/skillseek-backend/Database
     container_name: backend-container
+    image: mirotivo/tutorials-system-backend-container:latest
 
   frontend-container:
     depends_on:
@@ -17,3 +18,4 @@ services:
       - "8080:80"
       - "8000:443"
     container_name: frontend-container
+    image: mirotivo/tutorials-system-frontend-container:latest
